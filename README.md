@@ -107,16 +107,4 @@ y_2 &= x_2 \cdot \exp(s(x_1)) + t(x_1)
 \end{aligned}
 $$
 这种设计保证了雅可比行列式是三角矩阵，极易计算，使得极大似然估计（MLE）训练成为可能。
-执行计划 (75天冲刺)
-参考文献
-Dinh et al. "Density estimation using Real NVP", *ICLR 2017*.
-Papamakarios et al. "Normalizing Flows for Probabilistic Modeling and Inference", *JMLR 2021*.
-QuTiP Documentation: qutip.org
-Thuthesis: 大学学位论文模板
-📄 License
-本项目采用 MIT 许可证。详见 LICENSE 文件。
-👨‍💻 作者与致谢
-本项目由 [你的名字] 开发，作为本科/研究生毕业设计。感谢 Quantum Optics 社区及 PyTorch 团队的开源贡献。
-<div align="center">
-如果这个项目对你有帮助，请给一个 ⭐️ Star 支持一下！
-</div>
+
