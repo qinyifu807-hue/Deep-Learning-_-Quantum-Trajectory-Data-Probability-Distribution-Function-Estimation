@@ -68,43 +68,4 @@ DL_Quantum_Trajectory_PDF_Estimation/
     ├── weekly_reports/                # 每周进度
     └── meeting_notes.md
     
-快速开始
-1. 环境配置
-建议使用 Anaconda 创建虚拟环境：
-# 创建环境
-conda create -n quantum_ai python=3.9
-conda activate quantum_ai
-# 安装核心依赖
-pip install -r requirements.txt
-2. 生成量子轨线数据
-使用 QuTiP 模拟双势阱系统或非线性谐振子，生成蒙特卡洛轨迹数据。
-# 根据实际脚本扩展名运行或
-python scripts/run_generate_data.py
-说明：代码将调用 qutip.mcsolve 生成随机量子轨迹，并计算 $P(x) = |\psi(x)|^2$ 作为 Ground Truth。
-3. 训练归一化流模型
-使用生成的数据训练 RealNVP 模型：
-python scripts/run_train.py --config configs/train_config.yaml
-核心逻辑：损失函数为负对数似然 loss = -model.log_prob(batch).mean()。
-4. 评估与可视化
-对比真实分布、KDE 基准与深度学习模型的拟合效果：
-python scripts/run_eval.py
-输出图表将保存至 outputs/figures/，包含 KL 散度、Wasserstein 距离等关键指标。
-📚 理论基础
-1. 物理模拟层
-本项目的数据源是量子蒙特卡洛轨迹。与确定性演化（mesolve）不同，mcsolve 能够捕捉系统演化中的随机性和量子跳跃。
-哈密顿量示例（谐振子）：
-$$ H = \frac{p^2}{2m} + \frac{1}{2}m\omega^2 x^2 $$
-2. 核心算法层：归一化流
-归一化流通过一系列可逆变换 $f$ 将简单分布（如高斯分布 $z$）映射到复杂数据分布 $x$。
-变量变换公式：
-$$ p_x(x) = p_z(z) \left| \det \left( \frac{\partial f^{-1}(x)}{\partial x} \right) \right| $$
-RealNVP 核心机制：
-使用仿射耦合层，将输入分为两部分 $x_1, x_2$：
-$$
-\begin{aligned}
-y_1 &= x_1 \
-y_2 &= x_2 \cdot \exp(s(x_1)) + t(x_1)
-\end{aligned}
-$$
-这种设计保证了雅可比行列式是三角矩阵，极易计算，使得极大似然估计（MLE）训练成为可能。
 
