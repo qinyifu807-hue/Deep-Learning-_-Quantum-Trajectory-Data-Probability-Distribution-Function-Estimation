@@ -21,7 +21,7 @@
 ```text
 DL_Quantum_Trajectory_PDF_Estimation/
 ├── README.md                          # 项目说明书
-├── requirements.txt                   # 依赖清单：pip install -r requirements.txt
+├── requirements.txt                   # 依赖清单requirements.txt
 ├── environment.yml                    # Conda环境配置：保证可复现性
 ├── configs/                           # 【配置层】超参数管理
 │   ├── base_config.yaml               # 随机种子、设备(CUDA/CPU)、数据路径
